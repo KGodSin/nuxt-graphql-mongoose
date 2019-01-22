@@ -1,0 +1,29 @@
+type Person {
+    _id: Int!
+    name: String!
+    age: Int!
+    gender: String!
+}
+
+type Movie {
+    _id: Int!
+    name: String!
+    score: Int!
+}
+
+type Error {
+    text: String!
+}
+
+type Query {
+    people: [Person]!
+    person(_id: Int!): Person
+    movies: [Movie]!
+    movie(id: Int!): Movie
+    login(username: String!, password: String!): Error!
+}
+
+type Mutation {
+    addMovie(name: String!, score: Int!): Movie!
+    deleteMovie(id: Int!): Boolean!
+}
