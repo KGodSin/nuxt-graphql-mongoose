@@ -10,7 +10,7 @@
                     description="이메일 입력">
         <b-form-input id="exampleInput1"
                       type="email"
-                      v-model="form.username"
+                      v-model="form.email"
                       required
                       placeholder="Endter email">
         </b-form-input>
@@ -29,7 +29,7 @@
       <b-button type="submit" variant="primary">Submit</b-button>
     </b-form>
     <div v-else>
-      Hello {{ $store.state.authUser.username }}!
+      Hello {{ $store.state.authUser.email }}!
       <pre>I am the secret content, I am shown only when the use is connected.</pre>
       <p><i>You can also refresh this page, you'll still be connected!</i></p>
       <button @click="logout">
@@ -50,7 +50,7 @@ export default {
     return {
       form: {
         error: null,
-        username: '',
+        email: '',
         password: ''
       }
     }
@@ -59,10 +59,10 @@ export default {
     async login() {
       try {
         await this.$store.dispatch('login', {
-          username: this.form.username,
+          email: this.form.email,
           password: this.form.password
         })
-        this.form.username = ''
+        this.form.email = ''
         this.form.password = ''
         this.form.error = null
       } catch (e) {

@@ -12,7 +12,13 @@ const graphql = {
   path:"/graphql",
   handler: graphqlHTTP({
     schema: schema,
-    graphiql: true
+    graphiql: process.env.NODE_ENV === "development",
+    formatError: (err) => {
+      if(process.env.NODE_ENV === "development") {
+        console.log(err);
+      }
+      return ({ message: err.message, statusCode: 401}); 
+    }
   })
 };
 
@@ -64,6 +70,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    watch: ['graphql'],
     /*
     ** Run ESLint on save
     */
